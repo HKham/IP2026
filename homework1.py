@@ -8,6 +8,8 @@ cx, cy = -1, -1
 org_img = cv2.imread('hamster2.jpg')
 img = org_img.copy() 
 
+alpha = 0.4  
+
 def nothing(x):
     pass
 
@@ -24,7 +26,10 @@ def draw_rectangle(event,x,y,flags,param):
     elif event == cv2.EVENT_LBUTTONUP:
         drawing = False
         cx, cy = x, y
-        cv2.rectangle(org_img, (ix,iy), (cx,cy), (0,255,0), -1)
+
+        overlay = org_img.copy()
+        cv2.rectangle(overlay, (ix,iy), (cx,cy), (0,255,0), -1)
+        cv2.addWeighted(overlay, alpha, org_img, 1 - alpha, 0, org_img)
 
 cv2.namedWindow('image', cv2.WINDOW_NORMAL)
 cv2.createTrackbar('Value','image',0,255,nothing)
@@ -36,9 +41,11 @@ while(1) :
     value = cv2.getTrackbarPos('Value', 'image')
 
     if drawing == True: 
-        cv2.rectangle(img, (ix,iy), (cx,cy),(0,255,0), -1)
+        overlay = img.copy()
+        cv2.rectangle(overlay, (ix,iy), (cx,cy),(0,255,0), -1)
+        cv2.addWeighted(overlay, alpha, img, 1 - alpha, 0, img)
 
-    cv2.putText(img,f'Mouse position: ({ix},{iy})-({cx},{cy}), {value}',(10,30), font, 1,(255,255,255),1,cv2.LINE_AA)
+
     cv2.imshow('image',img)
     k = cv2.waitKey(1) & 0xFF
     if k == 27:
