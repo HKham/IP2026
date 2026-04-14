@@ -10,5 +10,12 @@ Homework2
 
 Homework3
 
-![homework3](./homework3.png)
+![homework3](./homework3.jpg)
 
+Homework4
+
+![homework4](./homework4.jpg)
+
+Homework5
+
+![homework5](./homework5.jpg)
