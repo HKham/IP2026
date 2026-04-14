@@ -10,7 +10,7 @@ Homework2
 
 Homework3
 
-![homework3](./homework3.jpg)
+![homework3](./homework3.png)
 
 Homework4
 
